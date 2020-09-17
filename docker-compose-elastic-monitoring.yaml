@@ -1,8 +1,8 @@
 version: '3.7'
 services:
-  es01:
+  elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.9.1
-    container_name: es01
+    container_name: elasticsearch
     environment:
       - discovery.type=single-node   
     volumes:
@@ -17,12 +17,22 @@ services:
     image: docker.elastic.co/kibana/kibana:7.9.1
     container_name: kibana
     environment:
-      ELASTICSEARCH_HOSTS: http://es01:9200    
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200    
     
     ports:
       - 5601:5601
     networks:
       - elastic
+  heartbeat:
+    image: docker.elastic.co/beats/heartbeat:7.9.1
+    container_name: heartbeat
+    environment:
+      - setup.kibana.host=kibana:5601
+      - output.elasticsearch.hosts=["elasticsearch:9200"]
+    volume:
+      - $(pwd)/heartbeat.docker.yml:/usr/share/heartbeat/heartbeat.yml:ro
+
+
 
 volumes:
   data01:
