@@ -29,7 +29,7 @@ services:
     environment:
       - setup.kibana.host=kibana:5601
       - output.elasticsearch.hosts=["elasticsearch:9200"]
-    volume:
+    volumes:
       - ./heartbeat.docker.yml:/usr/share/heartbeat/heartbeat.yml:ro
 
 
