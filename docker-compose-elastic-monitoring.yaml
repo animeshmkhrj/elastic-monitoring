@@ -18,7 +18,7 @@ services:
     image: docker.elastic.co/kibana/kibana:7.9.1
     volumes:
       - ./kibana.yml:/usr/share/kibana/config/kibana.yml
-    links: 
+    link: 
       - es01:elasticsearch
     ports:
       - 5601:5601
