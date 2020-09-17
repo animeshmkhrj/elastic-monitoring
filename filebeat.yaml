@@ -3,6 +3,7 @@ services:
   filebeat:
     image: docker.elastic.co/beats/filebeat:7.9.1
     container_name: filebeat
+    user: root
     environment:
       - setup.kibana.host=kibana:5601
       - output.elasticsearch.hosts=["elasticsearch:9200"]
@@ -10,6 +11,7 @@ services:
       - ./filebeat.docker.yml:/usr/share/filebeat/filebeat.yml
       - /var/lib/docker/containers:/var/lib/docker/containers
       - /var/run/docker.sock:/var/run/docker.sock
+      - /var/log/:/var/log/
     networks:
       - elastic
 networks:

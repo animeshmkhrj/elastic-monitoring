@@ -2,8 +2,8 @@ heartbeat.monitors:
 - type: http
   schedule: '@every 5s'
   urls:
-    - http://elasticsearch:9200
-    - http://kibana:5601
+    - https://smartweld.livnsense.com
+    - https://livnsense.myfirewall.co:2001
 
 - type: icmp
   schedule: '@every 5s'
@@ -15,6 +15,4 @@ processors:
 - add_cloud_metadata: ~
 
 output.elasticsearch:
-  hosts: '${ELASTICSEARCH_HOSTS:elasticsearch:9200}'
-  username: '${ELASTICSEARCH_USERNAME:}'
-  password: '${ELASTICSEARCH_PASSWORD:}'
+  hosts: '143.110.176.133:9200'

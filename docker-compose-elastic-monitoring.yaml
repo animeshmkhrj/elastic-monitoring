@@ -6,7 +6,7 @@ services:
     environment:
       - discovery.type=single-node   
     volumes:
-      - data01:/usr/share/elasticsearch/data
+      - data02:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
       - 9300:9300
@@ -18,7 +18,9 @@ services:
     container_name: kibana
     environment:
       ELASTICSEARCH_HOSTS: http://elasticsearch:9200    
- 
+
+    volumes:
+     - ./kibana.yml:/usr/share/kibana/config/kibana.yml
     ports:
       - 5601:5601
     networks:
@@ -28,7 +30,7 @@ services:
 
 
 volumes:
-  data01:
+  data02:
     driver: local
 networks:
   elastic:
