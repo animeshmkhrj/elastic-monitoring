@@ -1,4 +1,4 @@
-version: '3.6'
+version: '3.7'
 services:
   es01:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
@@ -12,6 +12,16 @@ services:
       - 9300:9300
     networks:
       - elastic
+
+services:
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.9.1
+    volumes:
+      - ./kibana.yml:/usr/share/kibana/config/kibana.yml
+    link: es01:elasticsearch
+    ports:
+      -5601:5601
+
 volumes:
   data01:
     driver: local
