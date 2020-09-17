@@ -15,3 +15,8 @@ services:
 volumes:
   data01:
     driver: local
+networks:
+  elastic:
+    external: true
+    name: elastic
+
