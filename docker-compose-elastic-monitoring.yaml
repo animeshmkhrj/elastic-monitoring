@@ -31,6 +31,8 @@ services:
       - output.elasticsearch.hosts=["elasticsearch:9200"]
     volumes:
       - ./heartbeat.docker.yml:/usr/share/heartbeat/heartbeat.yml:ro
+    networks:
+      - elastic
 
 
 
