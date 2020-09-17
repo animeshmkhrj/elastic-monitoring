@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  heartbeat:
+    image: docker.elastic.co/beats/heartbeat:7.9.1
+    container_name: heartbeat
+    environment:
+      - setup.kibana.host=kibana:5601
+      - output.elasticsearch.hosts=["elasticsearch:9200"]
+    volumes:
+      - ./heartbeat.docker.yml:/usr/share/heartbeat/heartbeat.yml
+    networks:
+      - elastic
+networks:
+  elastic:
+    external: true
+    name: elastic
