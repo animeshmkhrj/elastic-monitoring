@@ -15,4 +15,4 @@ processors:
 - add_cloud_metadata: ~
 
 output.elasticsearch:
-  hosts: '143.110.176.133:9200'
+  hosts: 'elasticsearch:9200'
